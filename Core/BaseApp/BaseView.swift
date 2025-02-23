@@ -22,7 +22,7 @@ struct BaseView<Content: View>: View {
     
     init(
         hideNavigationBar: Bool = false,
-        backgroundColor: Color = .background,
+        backgroundColor: Color = .color.background,
         title: String = .init(),
         leftIcon: AnyView? = nil,
         rightIcon: AnyView? = nil,
@@ -40,7 +40,7 @@ struct BaseView<Content: View>: View {
     
     var body: some View {
         ZStack {
-            Color(UIColor(Color.theme.background))
+            Color(UIColor(.background))
                 .ignoresSafeArea()
             
             VStack(spacing: 0) {
@@ -48,13 +48,13 @@ struct BaseView<Content: View>: View {
                     HStack {
                         ZStack {
                             if let leftIcon = leftIcon {
-                                Button(action: {
-                                    leftIconAction?() ?? presentationMode.wrappedValue.dismiss()
-                                }) {
-                                    leftIcon
-                                }
-                                .foregroundColor(.accent)
-                                .frame(maxWidth: .infinity, alignment: .leading)
+                                leftIcon
+                                    .onTapGesture {
+                                        print("hello")
+                                        presentationMode.wrappedValue.dismiss()
+                                    }
+                                    .foregroundColor(.accent)
+                                    .frame(maxWidth: .infinity, alignment: .leading)
                             }
                             
                             Text(title)
@@ -75,7 +75,7 @@ struct BaseView<Content: View>: View {
                     .frame(maxWidth: .infinity, alignment: .center)
                     .ignoresSafeArea(edges: .top)
                     .padding()
-                    .background(Color.theme.background)
+                    .background(Color.background)
                 }
                 Spacer(minLength: 0)
                 
