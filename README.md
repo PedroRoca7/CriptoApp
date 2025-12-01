@@ -5,8 +5,31 @@ CriptoApp é um aplicativo desenvolvido para entusiastas e investidores de cript
 ## Funcionalidades
 
 - **Preços em tempo real**: Acompanhe os preços atualizados das principais criptomoedas.
-- **Gráficos históricos**: Visualize o histórico de preços das criptomoedas em gráficos interativos.
+
+<p align="leading">
+    <img width=30% src="https://github.com/PedroRoca7/CriptoApp/blob/main/FilesImages/ListCoins.png"/>
+</p>
+
+- **Portifolio**: Acompanhe suas criptos adicionando-as ao seu portfólio..
+
+<p align="leading">
+    <img width=30% src="https://github.com/PedroRoca7/CriptoApp/blob/main/FilesImages/Portfolio.png"/>
+</p>
+
+- **Gráficos históricos**: Visualize o histórico de preços das criptomoedas em gráficos.
+
+<p align="leading">
+    <img width=30% src="https://github.com/PedroRoca7/CriptoApp/blob/main/FilesImages/BTCDetailCOin.png"/>,
+    <img width=30% src="https://github.com/PedroRoca7/CriptoApp/blob/main/FilesImages/TRXDetailCoin.png"/>
+</p>
+
+
 - **Assistente de IA**: Obtenha insights e dicas sobre o mercado de criptomoedas com a ajuda de um assistente de inteligência artificial.
+
+<p align="leading">
+   <img width=30% src="https://github.com/PedroRoca7/CriptoApp/blob/main/FilesImages/ChatView.png"/>, 
+   <img width=30% src="https://github.com/PedroRoca7/CriptoApp/blob/main/FilesImages/Chat.png"/>
+</p>
 
 ## Tecnologias Utilizadas
 
