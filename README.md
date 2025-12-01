@@ -7,20 +7,24 @@ CriptoApp é um aplicativo desenvolvido para entusiastas e investidores de cript
 - **Preços em tempo real**: Acompanhe os preços atualizados das principais criptomoedas.
 
 <p align="leading">
-    <img width=30% src="https://github.com/PedroRoca7/CriptoApp/blob/main/FilesImages/ListCoins.png"/>
+    <img width=20% src="https://github.com/PedroRoca7/CriptoApp/blob/main/FilesImages/ListCoins.png"/>,
+    <img width=20% src="https://github.com/PedroRoca7/CriptoApp/blob/main/FilesImages/ListCoinsLightMode.png"/>
 </p>
 
 - **Portifolio**: Acompanhe suas criptos adicionando-as ao seu portfólio..
 
 <p align="leading">
-    <img width=30% src="https://github.com/PedroRoca7/CriptoApp/blob/main/FilesImages/Portfolio.png"/>
+    <img width=20% src="https://github.com/PedroRoca7/CriptoApp/blob/main/FilesImages/Portfolio.png"/>,
+    <img width=20% src="https://github.com/PedroRoca7/CriptoApp/blob/main/FilesImages/PortfolioLightMode.png"/>
 </p>
 
 - **Gráficos históricos**: Visualize o histórico de preços das criptomoedas em gráficos.
 
 <p align="leading">
-    <img width=30% src="https://github.com/PedroRoca7/CriptoApp/blob/main/FilesImages/BTCDetailCOin.png"/>,
-    <img width=30% src="https://github.com/PedroRoca7/CriptoApp/blob/main/FilesImages/TRXDetailCoin.png"/>
+    <img width=20% src="https://github.com/PedroRoca7/CriptoApp/blob/main/FilesImages/BTCDetailCOin.png"/>,
+    <img width=20% src="https://github.com/PedroRoca7/CriptoApp/blob/main/FilesImages/BTCDetailLightMode.png"/>,
+    <img width=20% src="https://github.com/PedroRoca7/CriptoApp/blob/main/FilesImages/TRXDetailCoin.png"/>,
+    <img width=20% src="https://github.com/PedroRoca7/CriptoApp/blob/main/FilesImages/TRXDetailLightMode.png"/>
 </p>
 
 
@@ -28,7 +32,8 @@ CriptoApp é um aplicativo desenvolvido para entusiastas e investidores de cript
 
 <p align="leading">
    <img width=30% src="https://github.com/PedroRoca7/CriptoApp/blob/main/FilesImages/ChatView.png"/>, 
-   <img width=30% src="https://github.com/PedroRoca7/CriptoApp/blob/main/FilesImages/Chat.png"/>
+   <img width=30% src="https://github.com/PedroRoca7/CriptoApp/blob/main/FilesImages/Chat.png"/>,
+    <img width=30% src="https://github.com/PedroRoca7/CriptoApp/blob/main/FilesImages/ChatViewLightMode.png"/>
 </p>
 
 ## Tecnologias Utilizadas
