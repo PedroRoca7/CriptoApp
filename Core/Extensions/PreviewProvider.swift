@@ -8,13 +8,22 @@
 import Foundation
 import SwiftUI
 
-let dev = DeveloperPreview.instance
+extension PreviewProvider {
+    static var dev: DeveloperPreview {
+        return DeveloperPreview.instance
+    }
+}
 
 final class DeveloperPreview {
     
     static let instance = DeveloperPreview()
     private init() { }
             
+    let homeViewModel = HomeViewModel()
+    
+    let state1 = StatisticModel(title: "Market Cap", value: "$12.58n", percentageChange: 25.34)
+    let state2 = StatisticModel(title: "Total Volume", value: "$1.28Tr")
+    
     let coin = CoinModel(
        id: "bitcoin",
        symbol: "btc",

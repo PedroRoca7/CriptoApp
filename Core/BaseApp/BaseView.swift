@@ -10,84 +10,97 @@ import SwiftUI
 
 struct BaseView<Content: View>: View {
     
-    @Environment(\.presentationMode) var presentationMode
-    
     let hideNavigationBar: Bool
     let backgroundColor: Color
+    let backgroundTopColor: Color
     let title: String
     let leftIcon: AnyView?
+    let leftIconAction: () -> Void
     let rightIcon: AnyView?
-    let leftIconAction: (() -> Void)?
+    let rightIconAction: () -> Void
     let content: Content
     
     init(
         hideNavigationBar: Bool = false,
-        backgroundColor: Color = .color.background,
-        title: String = .init(),
+        backgroundColor: Color = .background,
+        backgroundTopColor: Color = .background,
+        title: String = String(),
         leftIcon: AnyView? = nil,
+        leftIconAction: @escaping () -> Void = {},
         rightIcon: AnyView? = nil,
-        leftIconAction: (() -> Void)? = nil,
+        rightIconAction: @escaping () -> Void = {},
         @ViewBuilder content: () -> Content
     ) {
         self.hideNavigationBar = hideNavigationBar
         self.backgroundColor = backgroundColor
+        self.backgroundTopColor = backgroundTopColor
         self.title = title
         self.leftIcon = leftIcon
-        self.rightIcon = rightIcon
         self.leftIconAction = leftIconAction
+        self.rightIcon = rightIcon
+        self.rightIconAction = rightIconAction
         self.content = content()
     }
     
     var body: some View {
-        ZStack {
-            Color(UIColor(.background))
-                .ignoresSafeArea()
-            
-            VStack(spacing: 0) {
-                if !hideNavigationBar {
-                    HStack {
-                        ZStack {
-                            if let leftIcon = leftIcon {
-                                leftIcon
-                                    .onTapGesture {
-                                        print("hello")
-                                        presentationMode.wrappedValue.dismiss()
-                                    }
-                                    .foregroundColor(.accent)
-                                    .frame(maxWidth: .infinity, alignment: .leading)
+        NavigationStack {
+            ZStack {
+                backgroundColor
+                    .ignoresSafeArea()
+                VStack(spacing: 0) {
+                    if !hideNavigationBar {
+                        HStack {
+                            ZStack {
+                                if let leftIcon = leftIcon {
+                                    leftIcon
+                                        .onTapGesture {
+                                            leftIconAction()
+                                        }
+                                        .foregroundColor(.accent)
+                                        .frame(maxWidth: .infinity, alignment: .leading)
+                                }
+                                
+                                Text(title)
+                                    .font(.headline)
+                                    .fontWeight(.heavy)
+                                    .foregroundStyle(.accent)
+                                    .frame(maxWidth: .infinity)
+                                
+                                if rightIcon != nil {
+                                    rightIcon
+                                        .onTapGesture {
+                                            rightIconAction()
+                                        }
+                                        .foregroundColor(.accent)
+                                        .frame(maxWidth: .infinity, alignment: .trailing)
+                                }
                             }
-                            
-                            Text(title)
-                                .font(.headline)
-                                .fontWeight(.heavy)
-                                .foregroundStyle(.accent)
-                                .padding()
-                                .frame(maxWidth: .infinity)
-                            
-                            if rightIcon != nil {
-                                rightIcon
-                                    .foregroundColor(.accent)
-                                    .frame(maxWidth: .infinity, alignment: .trailing)
-                            }
-                            
+                            .padding()
                         }
+                        .frame(maxWidth: .infinity)
+                        .background(backgroundTopColor)
+                        .padding(.top, UIApplication.shared.connectedScenes
+                            .compactMap { $0 as? UIWindowScene }
+                            .first?
+                            .windows
+                            .first?
+                            .safeAreaInsets.top ?? 0)
                     }
-                    .frame(maxWidth: .infinity, alignment: .center)
-                    .ignoresSafeArea(edges: .top)
-                    .padding()
-                    .background(Color.background)
+                    VStack {
+                        content
+                    }
+                    .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .top)
                 }
-                Spacer(minLength: 0)
-                
-                content
-                    .frame(maxWidth: .infinity, maxHeight: .infinity)
             }
+            .ignoresSafeArea(edges: .top)
         }
+        .navigationBarHidden(true)
     }
 }
 
 #Preview {
     BaseView(
+        hideNavigationBar: false,
         title: "Teste",
         leftIcon: AnyView(
             Image(systemName: "chevron.backward")
