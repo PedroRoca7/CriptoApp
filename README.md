@@ -38,10 +38,9 @@ CriptoApp é um aplicativo desenvolvido para entusiastas e investidores de cript
 
 ## Tecnologias Utilizadas
 
-- **Frontend**: [Descreva aqui as tecnologias usadas, como React Native, Flutter, etc.]
-- **Backend**: [Descreva aqui as tecnologias usadas, como Node.js, Python, etc.]
-- **APIs**: Integração com APIs de mercado de criptomoedas para obter dados em tempo real.
-- **Inteligência Artificial**: [Descreva aqui a tecnologia usada para o assistente de IA, como OpenAI, TensorFlow, etc.]
+- **Frontend**: [SwiftUI]
+- **APIs**: Integração com APIs de mercado de criptomoedas para obter dados em tempo real [api.coingecko.com, huggingface.co].
+- **Inteligência Artificial**: [https://huggingface.co/openai/gpt-oss-120b]
 
 ## Como Executar o Projeto
 
