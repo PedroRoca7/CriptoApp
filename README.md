@@ -31,9 +31,15 @@ CriptoApp é um aplicativo desenvolvido para entusiastas e investidores de cript
 - **Assistente de IA**: Obtenha insights e dicas sobre o mercado de criptomoedas com a ajuda de um assistente de inteligência artificial.
 
 <p align="leading">
-   <img width=30% src="https://github.com/PedroRoca7/CriptoApp/blob/main/FilesImages/ChatView.png"/>, 
-   <img width=30% src="https://github.com/PedroRoca7/CriptoApp/blob/main/FilesImages/Chat.png"/>,
-    <img width=30% src="https://github.com/PedroRoca7/CriptoApp/blob/main/FilesImages/ChatViewLightMode.png"/>
+   <img width=20% src="https://github.com/PedroRoca7/CriptoApp/blob/main/FilesImages/ChatView.png"/>, 
+   <img width=20% src="https://github.com/PedroRoca7/CriptoApp/blob/main/FilesImages/Chat.png"/>,
+    <img width=20% src="https://github.com/PedroRoca7/CriptoApp/blob/main/FilesImages/ChatViewLightMode.png"/>
+</p>
+
+<p align="leading">
+   <img width=20% src="https://github.com/PedroRoca7/CriptoApp/blob/main/FilesImages/SuggestionChat.png"/>, 
+   <img width=20% src="https://github.com/PedroRoca7/CriptoApp/blob/main/FilesImages/PortfolioChat.png"/>,
+    <img width=20% src="https://github.com/PedroRoca7/CriptoApp/blob/main/FilesImages/ChatResponse.png"/>
 </p>
 
 ## Tecnologias Utilizadas
