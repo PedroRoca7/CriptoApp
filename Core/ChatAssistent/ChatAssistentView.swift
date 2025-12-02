@@ -12,6 +12,14 @@ struct ChatView: View {
     
     @EnvironmentObject private var viewModel: ChatViewModel
     @State private var isRecording = false
+    @State private var showSuggestions = false
+    
+    let suggestions = [
+            "Como está o mercado de cripto hoje?",
+            "Analise meu portifólio",
+            "Quais criptos mais subiram hoje?",
+            "Faça um resumo das principais notícias de cripto"
+        ]
         
     var body: some View {
         VStack {
@@ -112,11 +120,52 @@ struct ChatView: View {
                 endPoint: .top
             )
         )
+        .sheet(isPresented: $showSuggestions) {
+            suggestionSheet
+                .presentationDetents([.fraction(0.8), .medium])
+        }
+                
+        // 👉 Abre o bottomsheet quando a tela aparecer
+        .onAppear {
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
+                showSuggestions = true
+            }
+        }
+    }
+    
+    var suggestionSheet: some View {
+        VStack(alignment: .leading, spacing: 16) {
+            Text("Sugestões Rápidas")
+                .font(.headline)
+            
+            ForEach(suggestions, id: \.self) { text in
+                Button(action: {
+                    if text == "Analise meu portifólio" {
+                        viewModel.userInput = viewModel.generatePortfolioSummaryFromCoreData()
+                        viewModel.sendMessage()
+                        showSuggestions = false
+                    } else {
+                        viewModel.userInput = text
+                        viewModel.sendMessage()
+                        showSuggestions = false
+                    }
+                }) {
+                    Text(text)
+                        .frame(maxWidth: .infinity, alignment: .leading)
+                        .padding()
+                        .background(Color.gray.opacity(0.15))
+                        .cornerRadius(8)
+                }
+            }
+            
+            Spacer()
+        }
+        .padding()
     }
 }
 
 
 #Preview {
     ChatView()
-        .environmentObject(ChatViewModel())
+        .environmentObject(ChatViewModel(allCoins: []))
 }

@@ -13,10 +13,11 @@ class ChatViewModel: ObservableObject {
     @Published var messages: [Message] = []
     @Published var isLoading: Bool = false
     @Published var recorder = AudioRecorder()
+    private let allCoins: [CoinModel]
     
     private var systemMessage: Message
 
-
+    private let portfolioDataService = PortifolioDataService()
     
     init(
         systemMessage: Message = Message(
@@ -43,9 +44,11 @@ class ChatViewModel: ObservableObject {
     ### Seu objetivo:
     Ser um **consultor educativo**, ajudando o usuário a entender o mercado e tomar decisões informadas.
     """
-        )
+        ),
+        allCoins: [CoinModel]
     ) {
         self.systemMessage = systemMessage
+        self.allCoins = allCoins
         
         // callback do recorder → joga no chat
         recorder.onTranscription = { [weak self] text in
@@ -81,6 +84,29 @@ class ChatViewModel: ObservableObject {
                 self?.isLoading = false
             }
         }
+    }
+    
+    func loadPortfolioCoins() -> [CoinModel] {
+        portfolioDataService.savedEntities.compactMap { entity in
+            guard let coin = allCoins.first(where: { $0.id == entity.coinID }) else {
+                return nil
+            }
+            return coin.updateHoldings(amount: entity.amount)
+        }
+    }
+    
+    func generatePortfolioSummaryFromCoreData() -> String {
+        let coins = loadPortfolioCoins()
+
+        guard !coins.isEmpty else {
+            return "Meu portfólio está vazio. Analise por favor."
+        }
+
+        let items = coins.map {
+            "\($0.symbol.uppercased()): quantidade \($0.currentHoldings ?? 0), valor total R$ \($0.currentHoldingsValue.formatted())"
+        }
+
+        return "Analise meu portfólio:\n" + items.joined(separator: "\n")
     }
 }
 

@@ -67,7 +67,7 @@ struct HomeView: View {
                 
                 NavigationLink(
                     destination: ChatView()
-                        .environmentObject(ChatViewModel()),
+                        .environmentObject(ChatViewModel(allCoins: viewModel.allCoins)),
                     isActive: $goToChatView
                 ) { EmptyView() }
             }
