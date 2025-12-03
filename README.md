@@ -11,13 +11,6 @@ CriptoApp é um aplicativo desenvolvido para entusiastas e investidores de cript
     <img width=20% src="https://github.com/PedroRoca7/CriptoApp/blob/main/FilesImages/ListCoinsLightMode.png"/>
 </p>
 
-- **Portifolio**: Acompanhe suas criptos adicionando-as ao seu portfólio..
-
-<p align="leading">
-    <img width=20% src="https://github.com/PedroRoca7/CriptoApp/blob/main/FilesImages/Portfolio.png"/>,
-    <img width=20% src="https://github.com/PedroRoca7/CriptoApp/blob/main/FilesImages/PortfolioLightMode.png"/>
-</p>
-
 - **Gráficos históricos**: Visualize o histórico de preços das criptomoedas em gráficos.
 
 <p align="leading">
@@ -27,6 +20,12 @@ CriptoApp é um aplicativo desenvolvido para entusiastas e investidores de cript
     <img width=20% src="https://github.com/PedroRoca7/CriptoApp/blob/main/FilesImages/TRXDetailLightMode.png"/>
 </p>
 
+- **Portifolio**: Acompanhe suas criptos adicionando-as ao seu portfólio..
+
+<p align="leading">
+    <img width=20% src="https://github.com/PedroRoca7/CriptoApp/blob/main/FilesImages/Portfolio.png"/>,
+    <img width=20% src="https://github.com/PedroRoca7/CriptoApp/blob/main/FilesImages/PortfolioLightMode.png"/>
+</p>
 
 - **Assistente de IA**: Obtenha insights e dicas sobre o mercado de criptomoedas com a ajuda de um assistente de inteligência artificial.
 
