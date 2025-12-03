@@ -2,6 +2,8 @@
 
 CriptoApp é um aplicativo desenvolvido para entusiastas e investidores de criptomoedas. Ele oferece uma experiência completa para acompanhar o mercado de criptomoedas em tempo real, visualizar gráficos históricos e contar com a ajuda de um assistente de inteligência artificial para entender melhor o mercado e como investir.
 
+<img width=20% src="https://github.com/PedroRoca7/CriptoApp/blob/main/FilesImages/videoInvestSenac.gif"/>
+
 ## Funcionalidades
 
 - **Preços em tempo real**: Acompanhe os preços atualizados das principais criptomoedas.
