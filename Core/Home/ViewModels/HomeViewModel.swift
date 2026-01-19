@@ -65,10 +65,10 @@ class HomeViewModel: ObservableObject {
         portfolioDataService.updatePortifolio(coin: coin, amount: amount)
     }
     
-    func reloadData() {
+    func reloadData() async throws {
         isLoading = true
-        coinDataService.getCoins()
-        marketDataService.getCoins()
+        try await coinDataService.getCoins()
+        try await marketDataService.getCoins()
         HapitcManager.notification(type: .success)
     }
     
@@ -155,20 +155,6 @@ class HomeViewModel: ObservableObject {
                 .map { $0.currentHoldingsValue }
                 .reduce(0, +)
         
-//        let previousValue =
-//            portifolioCoins
-//                .map { coin -> Double in
-//                    guard let percent24h = coin.priceChangePercentage24H else { return 0 }
-//                    let currentValue = coin.currentHoldingsValue
-//                    let percentChange = percent24h / 100
-//                    let previousValue = currentValue / (1 + percentChange)
-//                    return previousValue
-//                }
-//                .reduce(0, +)
-//        
-//        let percentageChange = ((portfolioValue - previousValue) / previousValue) * 100
-        
-    
         let portifolio = StatisticModel(
             title: "Portifolio Value",
             value: portfolioValue.toDollarString(),
@@ -177,5 +163,4 @@ class HomeViewModel: ObservableObject {
         stats.append(contentsOf: [marketCap, volume24h, btcDominance, portifolio])
         return stats
     }
-    
 }

@@ -19,7 +19,6 @@ struct HomeView: View {
     
     var body: some View {
         ZStack {
-            
             Color.background
                 .ignoresSafeArea()
             VStack {
@@ -297,14 +296,18 @@ extension HomeView {
             Button {
                 withAnimation(.linear(duration: 2.0)) {
                     viewModel.rotationDegrees += 360
-                    viewModel.reloadData()
+                    Task {
+                        do {
+                            try await viewModel.reloadData()
+                        } catch {
+                            
+                        }
+                    }
                 }
             } label: {
                 Image(systemName: "goforward")
             }
             .rotationEffect(Angle(degrees: viewModel.rotationDegrees))
-
-            
         }
         .font(.caption)
         .foregroundStyle(.secondaryText)

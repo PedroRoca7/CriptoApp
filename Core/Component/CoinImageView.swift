@@ -19,12 +19,12 @@ class CoinImageViewModel: ObservableObject {
  
     init(coin: CoinModel) {
         self.coin = coin
-        self.dataService = CoinImageService(coinModel: coin)
-        addSubscribers()
+        self.dataService = CoinImageService()
         self.isLoading = true
     }
     
-    private func addSubscribers() {
+    func addSubscribers() async {
+        try? await dataService.getCoinImage(coinModel: coin, imageName: coin.id)
         dataService.$image
             .sink { [weak self] _ in
                 self?.isLoading = false
@@ -32,7 +32,6 @@ class CoinImageViewModel: ObservableObject {
                 self?.image = image
             }
             .store(in: &cancellables)
-
     }
 }
 
@@ -64,6 +63,9 @@ struct CoinImageView: View {
                 Image(systemName: "questionmark")
                     .foregroundStyle(.secondaryText)
             }
+        }
+        .task {
+            await viewModel.addSubscribers()
         }
     }
 }

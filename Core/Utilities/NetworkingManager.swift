@@ -23,27 +23,25 @@ class NetworkingManager {
             }
         }
     }
-    static func download(url: URL) -> AnyPublisher<Data, Error> {
-        return URLSession.shared.dataTaskPublisher(for: url)
-            .subscribe(on: DispatchQueue.global(qos: .default))
-            .tryMap { try handleURLResponse(output: $0, url: url) }
-            .receive(on: DispatchQueue.main)
-            .eraseToAnyPublisher()
+    
+    static func download<T: Decodable>(url: URL, type: T.Type) async throws -> T {
+        let data = try await download(url: url)
+        return try JSONDecoder().decode(T.self, from: data)
     }
     
-    static func handleURLResponse(output: URLSession.DataTaskPublisher.Output, url: URL) throws -> Data {
-        guard let response = output.response as? HTTPURLResponse, response.statusCode >= 200 && response.statusCode < 300 else {
+    static func download(url: URL) async throws -> Data {
+        let (data, response) = try await URLSession.shared.data(from: url)
+        return try handleURLResponse(response: response, url: url, data: data)
+    }
+    
+    private static func handleURLResponse(
+        response: URLResponse,
+        url: URL,
+        data: Data
+    ) throws -> Data {
+        guard let httpResponse = response as? HTTPURLResponse, (200..<300).contains(httpResponse.statusCode) else {
             throw NetworkingError.badURLResponse(url: url)
         }
-        return output.data
-    }
-    
-    static func handleCompletion(completion: Subscribers.Completion<Error>) {
-        switch completion {
-        case .finished:
-            break
-        case .failure(let error):
-            print(error.localizedDescription)
-        }
+        return data
     }
 }
