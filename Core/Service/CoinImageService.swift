@@ -18,7 +18,6 @@ protocol CoinImageServiceProtocol {
 
 final class CoinImageService: CoinImageServiceProtocol {
     
-//    @Published var image: UIImage?
     private let fileManager = LocalFileManager.instance
     
     func getCoinImage(
