@@ -14,6 +14,7 @@ extension PreviewProvider {
     }
 }
 
+@MainActor
 final class DeveloperPreview {
     
     static let instance = DeveloperPreview()

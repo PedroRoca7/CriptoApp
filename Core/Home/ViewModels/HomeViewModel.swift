@@ -8,6 +8,7 @@
 import Combine
 import Foundation
 
+@MainActor
 class HomeViewModel: ObservableObject {
     
     @Published var statistics: [StatisticModel] = []
@@ -34,6 +35,7 @@ class HomeViewModel: ObservableObject {
     
     private func addSubscribe() {
         $searchText
+            .receive(on: DispatchQueue.main)
             .combineLatest(coinDataService.$allCoins, $sortOption)
             .debounce(for: .seconds(0.5), scheduler: DispatchQueue.main)
             .map(filterAndSortCoins)
@@ -52,6 +54,7 @@ class HomeViewModel: ObservableObject {
             .store(in: &cancellables)
         
         marketDataService.$marketData
+            .receive(on: DispatchQueue.main)
             .combineLatest($portifolioCoins)
             .map(mapGlobalMarketData)
             .sink { [weak self] returnedStats in

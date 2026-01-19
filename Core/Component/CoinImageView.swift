@@ -9,6 +9,7 @@ import Combine
 import CoreUI
 import SwiftUI
 
+@MainActor
 class CoinImageViewModel: ObservableObject {
     @Published var image: UIImage?
     @Published var isLoading: Bool = false
@@ -23,16 +24,29 @@ class CoinImageViewModel: ObservableObject {
         self.isLoading = true
     }
     
-    func addSubscribers() async {
-        try? await dataService.getCoinImage(coinModel: coin, imageName: coin.id)
-        dataService.$image
-            .sink { [weak self] _ in
-                self?.isLoading = false
-            } receiveValue: { [weak self] image in
-                self?.image = image
-            }
-            .store(in: &cancellables)
+    func loadImage() async {
+        isLoading = true
+        do {
+            image = try await dataService.getCoinImage(
+                coinModel: coin,
+                imageName: coin.id
+            )
+        } catch {
+            print("Erro ao carregar imagem:", error)
+        }
+        isLoading = false
     }
+    
+//    func addSubscribers() async {
+//        try? await dataService.getCoinImage(coinModel: coin, imageName: coin.id)
+//        dataService.$image
+//            .sink { [weak self] _ in
+//                self?.isLoading = false
+//            } receiveValue: { [weak self] image in
+//                self?.image = image
+//            }
+//            .store(in: &cancellables)
+//    }
 }
 
 struct CoinImageView: View {
@@ -65,7 +79,7 @@ struct CoinImageView: View {
             }
         }
         .task {
-            await viewModel.addSubscribers()
+            await viewModel.loadImage()
         }
     }
 }

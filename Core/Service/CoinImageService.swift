@@ -13,23 +13,23 @@ protocol CoinImageServiceProtocol {
         coinModel: CoinModel,
         imageName: String,
         folderName: String
-    ) async throws
+    ) async throws -> UIImage?
 }
 
 final class CoinImageService: CoinImageServiceProtocol {
     
-    @Published var image: UIImage?
+//    @Published var image: UIImage?
     private let fileManager = LocalFileManager.instance
     
     func getCoinImage(
         coinModel: CoinModel,
         imageName: String,
         folderName: String = "coin_images"
-    ) async throws {
+    ) async throws -> UIImage? {
         if let savedImage = fileManager.getImage(imageName: imageName, folderName: folderName) {
-            image = savedImage
+            return savedImage
         } else {
-            image = try await downloadingCoinImage(coinModel: coinModel)
+            return try await downloadingCoinImage(coinModel: coinModel)
         }
     }
     
